@@ -31,6 +31,8 @@ services:
       - OPENFGA_DATASTORE_ENGINE=sqlite
       - OPENFGA_DATASTORE_URI=file:/home/nonroot/openfga.db
       - OPENFGA_LOG_FORMAT=json
+      - OPENFGA_AUTHN_METHOD=preshared #共有キー追加
+      - OPENFGA_AUTHN_PRESHARED_KEYS=preshared #共有キー追加
     command: run
     networks:
       - openfga

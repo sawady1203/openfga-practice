@@ -58,5 +58,10 @@ if __name__ == "__main__":
         print("ステータスコード:", response.status_code)
         try:
             pprint(response.json(),indent=2)
+            # modelのidを保存
+            with open(".env",mode="a") as f:
+                fga_authorization_model_id = response.json()["authorization_model_id"]
+                f.write(f"FGA_AUTHORIZATION_MODEL_ID={fga_authorization_model_id}\n")
+
         except json.JSONDecodeError:
             print("レスポンス (テキスト形式):", response.text)

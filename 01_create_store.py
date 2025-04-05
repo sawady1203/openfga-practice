@@ -52,5 +52,9 @@ if __name__ == "__main__":
         print("ステータスコード:", response.status_code)
         try:
             print("レスポンス:", response.json())
+            # storeのidを保存
+            with open(".env",mode="a") as f:
+                store_id = response.json()["id"]
+                f.write(f"FGA_STORE_ID={store_id}\n")
         except json.JSONDecodeError:
             print("レスポンス (テキスト形式):", response.text)

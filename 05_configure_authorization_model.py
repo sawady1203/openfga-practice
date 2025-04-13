@@ -4,7 +4,7 @@ from pprint import pprint
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 def send_request(method="GET", url=None, payload=None, headers=None):
     """

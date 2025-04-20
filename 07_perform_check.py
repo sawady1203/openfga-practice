@@ -40,17 +40,22 @@ def send_request(method="GET", url=None, payload=None, headers=None):
 if __name__ == "__main__":
     FGA_API_URL = os.getenv("FGA_API_URL")
     FGA_STORE_ID = os.getenv("FGA_STORE_ID")
-    url = f"{FGA_API_URL}/stores/{FGA_STORE_ID}/authorization-models"
-    
-    # model.json を読み込んで pyload にする
-    with open("model.json", mode="r") as f:
-        payload = json.load(f)
-    print(payload)
-    
+    url = f"{FGA_API_URL}/stores/{FGA_STORE_ID}/check"
+
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {os.getenv("OPENFGA_AUTHN_PRESHARED_KEYS")}'
         }
+
+    # tuple.json を読み込んで pyload にする
+    with open("tuple.json", mode="r") as f:
+        tuple = json.load(f)
+    print(tuple)
+    
+    payload = {
+        "tuple_key": tuple,
+        "authorization_model_id": os.getenv("FGA_AUTHORIZATION_MODEL_ID")
+    }
 
     response = send_request(method="POST", url=url, payload=payload, headers=headers)
 
@@ -58,10 +63,6 @@ if __name__ == "__main__":
         print("ステータスコード:", response.status_code)
         try:
             pprint(response.json(),indent=2)
-            # modelのidを保存
-            with open(".env",mode="a") as f:
-                fga_authorization_model_id = response.json()["authorization_model_id"]
-                f.write(f"FGA_AUTHORIZATION_MODEL_ID={fga_authorization_model_id}\n")
 
         except json.JSONDecodeError:
             print("レスポンス (テキスト形式):", response.text)

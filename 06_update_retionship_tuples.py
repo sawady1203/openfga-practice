@@ -42,11 +42,24 @@ if __name__ == "__main__":
     FGA_STORE_ID = os.getenv("FGA_STORE_ID")
     url = f"{FGA_API_URL}/stores/{FGA_STORE_ID}/write"
     
-    # tuple.json を読み込んで pyload にする
-    with open("tuple.json", mode="r") as f:
-        tuple = json.load(f)
-    print(tuple)
-    
+    # # tuple.json を読み込んで pyload にする
+    # with open("tuple.json", mode="r") as f:
+    #     tuple = json.load(f)
+    # print(tuple)
+
+    tuple = [
+        {
+            "user": "user:masayoshi",
+            "relation": "viewer",
+            "object": "document:X"
+        },
+        {
+            "user": "user:takayuki",
+            "relation": "editor",
+            "object": "document:X"
+        },
+    ]
+
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {os.getenv("OPENFGA_AUTHN_PRESHARED_KEYS")}'
@@ -54,7 +67,7 @@ if __name__ == "__main__":
 
     payload = {
         "writes": {
-            "tuple_keys": [tuple]
+            "tuple_keys": tuple
         },
         "authorization_model_id": os.getenv("FGA_AUTHORIZATION_MODEL_ID")
     }

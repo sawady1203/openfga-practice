@@ -7,21 +7,16 @@
     {
       "metadata": {
         "relations": {
-          "owner": {
+          "can_edit": {},
+          "can_view": {},
+          "editor": {
             "directly_related_user_types": [
               {
                 "type": "user"
               }
             ]
           },
-          "reader": {
-            "directly_related_user_types": [
-              {
-                "type": "user"
-              }
-            ]
-          },
-          "writer": {
+          "viewer": {
             "directly_related_user_types": [
               {
                 "type": "user"
@@ -31,13 +26,31 @@
         }
       },
       "relations": {
-        "owner": {
+        "can_edit": {
+          "computedUserset": {
+            "relation": "editor"
+          }
+        },
+        "can_view": {
+          "union": {
+            "child": [
+              {
+                "computedUserset": {
+                  "relation": "viewer"
+                }
+              },
+              {
+                "computedUserset": {
+                  "relation": "editor"
+                }
+              }
+            ]
+          }
+        },
+        "editor": {
           "this": {}
         },
-        "reader": {
-          "this": {}
-        },
-        "writer": {
+        "viewer": {
           "this": {}
         }
       },

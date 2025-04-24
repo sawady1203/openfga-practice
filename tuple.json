@@ -1,5 +1,5 @@
 {
-    "user": "user:anne",
-    "relation": "reader",
-    "object": "document:Z"
+    "user": "user:masayoshi",
+    "relation": "can_edit",
+    "object": "document:X"
 }

@@ -5,6 +5,7 @@ type user
 
 type document
   relations
-    define reader: [user]
-    define writer: [user]
-    define owner: [user]
+    define viewer: [user]
+    define editor: [user]
+    define can_view: viewer or editor
+    define can_edit: editor

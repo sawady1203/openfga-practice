@@ -1,5 +1,5 @@
 {
-    "user": "user:masayoshi",
-    "relation": "can_edit",
-    "object": "document:X"
+    "user": "group:B#memnber",
+    "relation": "can_view",
+    "object": "document:A"
 }

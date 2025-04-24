@@ -5,7 +5,11 @@ type user
 
 type document
   relations
-    define viewer: [user]
-    define editor: [user]
+    define viewer: [user, group#member]
+    define editor: [user, group#member]
     define can_view: viewer or editor
     define can_edit: editor
+
+type group
+  relations
+    define member: [user, group#member]

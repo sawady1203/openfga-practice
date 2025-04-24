@@ -13,6 +13,10 @@
             "directly_related_user_types": [
               {
                 "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
               }
             ]
           },
@@ -20,6 +24,10 @@
             "directly_related_user_types": [
               {
                 "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
               }
             ]
           }
@@ -55,6 +63,29 @@
         }
       },
       "type": "document"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "member": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "member": {
+          "this": {}
+        }
+      },
+      "type": "group"
     }
   ]
 }

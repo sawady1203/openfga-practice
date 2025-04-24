@@ -48,16 +48,29 @@ if __name__ == "__main__":
     # print(tuple)
 
     tuple = [
+        # {
+        #     "user": "user:nakagawa",
+        #     "relation": "member",
+        #     "object": "group:A"
+        # },
+        # {
+        #     "user": "user:shouhei",
+        #     "relation": "member",
+        #     "object": "group:B"
+        # },
+        # group:A に対して, group:B の member を追加
+        # {  
+        #     "user": "group:B#member",
+        #     "relation": "member",
+        #     "object": "group:A"
+        # }
+        # group:A が document:A の viewer であることを追加
         {
-            "user": "user:masayoshi",
-            "relation": "viewer",
-            "object": "document:X"
-        },
-        {
-            "user": "user:takayuki",
+            "user": "group:B#member",
             "relation": "editor",
-            "object": "document:X"
+            "object": "document:A"
         },
+
     ]
 
     headers = {

@@ -48,30 +48,73 @@ if __name__ == "__main__":
     # print(tuple)
 
     tuple = [
-        # {
-        #     "user": "user:nakagawa",
-        #     "relation": "member",
-        #     "object": "group:A"
-        # },
-        # {
-        #     "user": "user:shouhei",
-        #     "relation": "member",
-        #     "object": "group:B"
-        # },
-        # group:A に対して, group:B の member を追加
-        # {  
-        #     "user": "group:B#member",
-        #     "relation": "member",
-        #     "object": "group:A"
-        # }
-        # group:A が document:A の viewer であることを追加
+        # 組織: hoge.com の 管理者(org-admin) を sawady として追加
         {
-            "user": "group:B#member",
-            "relation": "editor",
-            "object": "document:A"
+            "user": "user:sawady",
+            "relation": "org-admin",
+            "object": "organization:hoge.com"
         },
-
-    ]
+        # 組織 hoge.com の group として hoge-owner-group を 追加
+        {
+            "user": "group:hoge-owner-group",
+            "relation": "group",
+            "object": "organization:hoge.com"
+        },
+        # 組織 hoge.com の group として hoge-editor-group を 追加
+        {
+            "user": "group:hoge-editor-group",
+            "relation": "group",
+            "object": "organization:hoge.com"
+        },
+        # 組織 hoge.com の group として hoge-viewer-group を 追加
+        {
+            "user": "group:hoge-viewer-group",
+            "relation": "group",
+            "object": "organization:hoge.com"
+        },
+        # hoge-owner-group のユーザーとして hoge-owner-man を追加
+        {
+            "user": "user:hoge-owner-man",
+            "relation": "member",
+            "object": "group:hoge-owner-group"
+        },
+        # hoge-editor-group のユーザーとして hoge-editor-man を追加
+        {
+            "user": "user:hoge-editor-man",
+            "relation": "member",
+            "object": "group:hoge-editor-group"
+        },
+        # hoge-viewer-group のユーザーとして hoge-viewer-man を追加
+        {
+            "user": "user:hoge-viewer-man",
+            "relation": "member",
+            "object": "group:hoge-viewer-group"
+        },
+        # hoge-owner-group を owner として hoge-folder に追加
+        {
+            "user": "group:hoge-owner-group#member",
+            "relation": "owner",
+            "object": "folder:hoge-folder"
+        },
+        # hoge-editor-group を editor として hoge-folder に追加
+        {
+            "user": "group:hoge-editor-group#member",
+            "relation": "editor",
+            "object": "folder:hoge-folder"
+        },
+        # hoge-viewer-group を viewer として hoge-folder に追加
+        {
+            "user": "group:hoge-viewer-group#member",
+            "relation": "viewer",
+            "object": "folder:hoge-folder"
+        },
+        # hoge-folder に sample.txt を追加
+        {
+            "user": "folder:hoge-folder",
+            "relation": "parent",
+            "object": "file:sample.txt"
+        },
+        ]
 
     headers = {
         'Content-Type': 'application/json',

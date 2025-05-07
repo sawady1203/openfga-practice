@@ -3,8 +3,25 @@ model
 
 type user
 
-type document
+type organization
   relations
-    define reader: [user]
-    define writer: [user]
-    define owner: [user]
+    define org-admin: [user]
+    define group: [group]
+
+type group
+  relations
+    define member: [user, group#member]
+    define owner: [organization]
+
+type folder
+  relations
+    define viewer: [user, group#member]
+    define editor: [user, group#member]
+    define owner: [user, group#member]
+
+type file
+  relations
+    define parent: [folder]
+    define can_view: viewer from parent or editor from parent or owner from parent
+    define can_edit: editor from parent or owner from parent
+    define can_share: owner from parent

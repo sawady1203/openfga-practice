@@ -1,5 +1,5 @@
 {
-    "user": "user:anne",
-    "relation": "reader",
-    "object": "document:Z"
+    "user": "user:hoge-viewer-man",
+    "relation": "can_view",
+    "object": "file:sample.txt"
 }

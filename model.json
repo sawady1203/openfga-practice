@@ -7,9 +7,80 @@
     {
       "metadata": {
         "relations": {
-          "can_edit": {},
-          "can_view": {},
+          "group": {
+            "directly_related_user_types": [
+              {
+                "type": "group"
+              }
+            ]
+          },
+          "org-admin": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "group": {
+          "this": {}
+        },
+        "org-admin": {
+          "this": {}
+        }
+      },
+      "type": "organization"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "member": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "owner": {
+            "directly_related_user_types": [
+              {
+                "type": "organization"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "member": {
+          "this": {}
+        },
+        "owner": {
+          "this": {}
+        }
+      },
+      "type": "group"
+    },
+    {
+      "metadata": {
+        "relations": {
           "editor": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "owner": {
             "directly_related_user_types": [
               {
                 "type": "user"
@@ -34,58 +105,111 @@
         }
       },
       "relations": {
-        "can_edit": {
-          "computedUserset": {
-            "relation": "editor"
-          }
-        },
-        "can_view": {
-          "union": {
-            "child": [
-              {
-                "computedUserset": {
-                  "relation": "viewer"
-                }
-              },
-              {
-                "computedUserset": {
-                  "relation": "editor"
-                }
-              }
-            ]
-          }
-        },
         "editor": {
+          "this": {}
+        },
+        "owner": {
           "this": {}
         },
         "viewer": {
           "this": {}
         }
       },
-      "type": "document"
+      "type": "folder"
     },
     {
       "metadata": {
         "relations": {
-          "member": {
+          "can_edit": {},
+          "can_share": {},
+          "can_view": {},
+          "parent": {
             "directly_related_user_types": [
               {
-                "type": "user"
-              },
-              {
-                "relation": "member",
-                "type": "group"
+                "type": "folder"
               }
             ]
           }
         }
       },
       "relations": {
-        "member": {
+        "can_edit": {
+          "union": {
+            "child": [
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "editor"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "owner"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "can_share": {
+          "tupleToUserset": {
+            "computedUserset": {
+              "relation": "owner"
+            },
+            "tupleset": {
+              "relation": "parent"
+            }
+          }
+        },
+        "can_view": {
+          "union": {
+            "child": [
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "viewer"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "editor"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "owner"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "parent": {
           "this": {}
         }
       },
-      "type": "group"
+      "type": "file"
     }
   ]
 }

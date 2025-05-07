@@ -1,5 +1,5 @@
 {
-    "user": "group:B#memnber",
+    "user": "user:hoge-viewer-man",
     "relation": "can_view",
-    "object": "document:A"
+    "object": "file:sample.txt"
 }
